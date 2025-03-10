@@ -1,3 +1,7 @@
 export default function () {
-  return <>Hello, Shubhojeet Ghosh this side...</>;
+  return (
+    <>
+      <div className="text-[30px]">Hello, Shubhojeet Ghosh this side...</div>
+    </>
+  );
 }
