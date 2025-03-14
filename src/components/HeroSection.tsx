@@ -6,7 +6,7 @@ export default function HeroSection() {
       <div className="w-full animate-blur-reveal">
         <div className="text-[20px] md:text-[36px]">hi!</div>
         <div className="text-[32px] md:text-[60px] lg:text-[72px] font-[800] leading-[0.9]">
-          I'm <span className="text-primarycyan">S</span>hubhojeet{" "}
+          I&apos;m <span className="text-primarycyan">S</span>hubhojeet{" "}
           <span className="text-primarycyan">G</span>hosh,
         </div>
       </div>
