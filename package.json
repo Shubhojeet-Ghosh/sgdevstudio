@@ -9,12 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-tooltip": "^1.1.8",
+    "@reduxjs/toolkit": "^2.6.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.479.0",
+    "motion": "^12.5.0",
     "next": "14.2.24",
     "react": "^18",
     "react-dom": "^18",
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7"
   },

@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
+import dynamic from "next/dynamic";
+
+const ReduxProvider = dynamic(() => import("@/store/redux-provider"), {
+  ssr: false, // Ensures Redux runs only on the client
+});
+
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700", "800"],
@@ -11,7 +17,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Shubhojeet Ghosh | Full Stack AI Engineer",
   description:
-    "Shubhojeet this side, I am a full stack developer with deep interest and knowledge in Artificial Intelligent(AI).",
+    "Shubhojeet this side, I am a full stack developer with deep interest and knowledge in Artificial Intelligent(AI) and agents.",
 };
 
 export default function RootLayout({
@@ -22,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${plusJakarta.variable} antialiased font-jakarta`}>
-        {children}
+        <ReduxProvider> {children}</ReduxProvider>
       </body>
     </html>
   );

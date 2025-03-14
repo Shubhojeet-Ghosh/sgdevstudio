@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: ["class"],
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -53,11 +53,30 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        darkerblack: "#222831",
+        lighterblack: "#393E46",
+        primarycyan: "#00ADB5",
+        brightgray: "#EEEEEE",
+        gradientpurple: "#654ea3",
+        gradientpink: "#eaafc8",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      screens: {
+        lg: "1152px",
+      },
+      keyframes: {
+        blurReveal: {
+          "0%": { opacity: "0", filter: "blur(10px)" },
+          "50%": { opacity: "0.5", filter: "blur(5px)" },
+          "100%": { opacity: "1", filter: "blur(0px)" },
+        },
+      },
+      animation: {
+        "blur-reveal": "blurReveal 0.4s ease-out forwards",
       },
     },
   },

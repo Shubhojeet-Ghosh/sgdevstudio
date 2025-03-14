@@ -1,12 +1,13 @@
 import React from "react";
+import Link from "next/link";
 
 const SgLogo = () => {
   return (
     <>
-      <div className="w-full">
-        <div className="font-[700]">
-          <span className="text-[#00ADB5]">sg</span>devstudio
-        </div>
+      <div className="w-full flex items-center justify-center">
+        <Link className="font-[700]" href="/">
+          <span className="text-primarycyan">sg</span>devstudio
+        </Link>
       </div>
     </>
   );
