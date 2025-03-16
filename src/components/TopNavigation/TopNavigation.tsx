@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import SgLogo from "@/components/BrandLogo/SgDevStudioLogo";
 import ThemeToggle from "@/components/TopNavigation/ThemeToggle";
 import BaseLink from "@/components/TopNavigation/BaseLink";
+import NavigationAccounts from "@/components/TopNavigation/NavigationAccounts";
+import NavigationLinks from "@/components/TopNavigation/NavigationLinks";
+
 const TopNavigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -18,10 +21,10 @@ const TopNavigation = () => {
   return (
     <div
       className={`sticky top-0 left-0 w-full h-[65px] z-[100] 
-        text-darkerblack dark:text-brightgray flex items-center justify-center px-[12px] 
+        text-darkerblack dark:text-brightgray flex items-center justify-center px-[16px]
         transition-all duration-300 ${
           isScrolled
-            ? "bg-white/80 dark:bg-black/80 backdrop-blur-[10px]"
+            ? "bg-white/70 dark:bg-black/70 backdrop-blur-[8px] shadow-[0px_1px_0px_rgba(0,0,0,0.1)] dark:shadow-[0px_1px_0px_rgba(255,255,255,0.1)]"
             : "bg-transparent"
         }`}
     >
@@ -34,9 +37,14 @@ const TopNavigation = () => {
               <SgLogo />
             </div>
           </div>
+          <div className="ml-[16px]">
+            <NavigationLinks />
+          </div>
         </div>
 
-        <div>
+        {/* Right Group */}
+        <div className="flex items-center justify-center">
+          <NavigationAccounts />
           <ThemeToggle />
         </div>
       </div>

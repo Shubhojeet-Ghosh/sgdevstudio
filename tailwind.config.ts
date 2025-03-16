@@ -59,6 +59,8 @@ const config: Config = {
         brightgray: "#EEEEEE",
         gradientpurple: "#654ea3",
         gradientpink: "#eaafc8",
+        tealbutton: "#00879E",
+        pastelprimarygreen: "#5BA19B",
       },
       borderRadius: {
         lg: "var(--radius)",

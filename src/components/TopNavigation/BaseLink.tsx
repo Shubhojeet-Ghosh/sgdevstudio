@@ -13,7 +13,7 @@ export default function BaseLink() {
         className={`flex px-[12px] py-[6px] items-center justify-center rounded-[8px]  ${
           pathname === "/"
             ? "bg-primarycyan"
-            : "bg-white outline outline-[2px] outline-primarycyan"
+            : "bg-white dark:bg-transparent outline outline-[2px] outline-primarycyan"
         }  mt-[2px]`}
       >
         <div

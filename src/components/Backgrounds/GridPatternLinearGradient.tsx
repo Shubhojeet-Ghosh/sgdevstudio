@@ -4,12 +4,7 @@ import { GridPattern } from "@/components/magicui/grid-pattern";
 
 export default function GridPatternLinearGradient() {
   return (
-    <div
-      className={cn(
-        "absolute top-0 left-0 w-full h-full overflow-hidden rounded-lg bg-transparent",
-        "transition-transform duration-300 ease-out"
-      )}
-    >
+    <div>
       <GridPattern
         width={35}
         height={35}

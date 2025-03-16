@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 import dynamic from "next/dynamic";
 
@@ -29,6 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${plusJakarta.variable} antialiased font-jakarta`}>
         <ReduxProvider> {children}</ReduxProvider>
+        <Toaster />
       </body>
     </html>
   );
