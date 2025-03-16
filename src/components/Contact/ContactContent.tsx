@@ -26,8 +26,7 @@ export default function ContactContent() {
           <ContactDetailsTable />
         </div>
         <p className="text-[16px] font-[400] mt-[24px]">
-          If you need any additional information, including my phone number,
-          feel free to reach out via email first.
+          If you need any additional information, feel free to reach out.
         </p>
       </div>
       <div className="py-[50px]">

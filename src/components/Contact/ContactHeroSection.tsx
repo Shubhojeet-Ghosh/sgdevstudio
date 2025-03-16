@@ -12,7 +12,7 @@ export default function ContactHeroSection() {
       <div className="w-full text-[32px] md:text-[72px] font-[700] animate-blur-reveal leading-[0.9] mt-[20px]">
         Contact
       </div>
-      <div className="w-full mt-[16px] text-[14px] md:text-[24px]">
+      <div className="w-full mt-[16px] text-[16px] md:text-[24px]">
         <TextAnimate animation="blurIn">
           Have a question? Drop me a message on social media, email, or phone.
         </TextAnimate>

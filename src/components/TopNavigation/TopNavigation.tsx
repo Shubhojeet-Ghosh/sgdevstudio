@@ -44,7 +44,11 @@ const TopNavigation = () => {
 
         {/* Right Group */}
         <div className="flex items-center justify-center">
-          <NavigationAccounts />
+          <div className="hidden md:block">
+            {" "}
+            <NavigationAccounts />
+          </div>
+
           <ThemeToggle />
         </div>
       </div>

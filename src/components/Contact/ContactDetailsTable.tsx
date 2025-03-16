@@ -1,6 +1,6 @@
-"use client";
 import React from "react";
 import { Mail } from "lucide-react";
+import { Phone } from "lucide-react";
 
 interface ContactItem {
   label: string;
@@ -8,8 +8,6 @@ interface ContactItem {
 }
 
 const contactDetails: ContactItem[] = [
-  { label: "Address", value: "Noida, India" },
-  { label: "Timezone", value: "GMT + 5:30" },
   {
     label: "E-mail",
     value: (
@@ -21,6 +19,19 @@ const contactDetails: ContactItem[] = [
       </a>
     ),
   },
+  {
+    label: "Phone",
+    value: (
+      <a
+        href="tel:+917903758386"
+        className="text-pastelprimarygreen hover:underline flex items-center gap-2"
+      >
+        <Phone size={16} /> +91 <span>7903758386</span>
+      </a>
+    ),
+  },
+  { label: "Address", value: "Noida, India" },
+  { label: "Timezone", value: "GMT + 5:30" },
 ];
 
 export default function ContactDetailsTable() {
