@@ -47,7 +47,7 @@ export default function ThemeToggle() {
         <Tooltip>
           <TooltipTrigger>
             <div
-              className="cursor-pointer hover:bg-darkerblack hover:text-white dark:text-white text-black p-[6px] rounded-[4px] transition-all duration-300"
+              className="cursor-pointer hover:bg-darkerblack hover:text-white dark:text-white text-black mb-[3px] p-[6px] rounded-[4px] transition-all duration-300"
               onClick={toggleTheme}
             >
               {currentTheme === "light" ? (
