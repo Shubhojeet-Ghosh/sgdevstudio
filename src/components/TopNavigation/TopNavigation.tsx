@@ -5,6 +5,7 @@ import ThemeToggle from "@/components/TopNavigation/ThemeToggle";
 import BaseLink from "@/components/TopNavigation/BaseLink";
 import NavigationAccounts from "@/components/TopNavigation/NavigationAccounts";
 import NavigationLinks from "@/components/TopNavigation/NavigationLinks";
+import AppVersion from "@/components/TopNavigation/AppVersion";
 
 const TopNavigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -52,6 +53,7 @@ const TopNavigation = () => {
           <ThemeToggle />
         </div>
       </div>
+      <AppVersion />
     </div>
   );
 };
