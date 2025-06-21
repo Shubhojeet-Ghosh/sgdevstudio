@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FileText } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import { ResumeFigmaLink } from "@/config/about_me";
+import { ResumeDriveLink } from "@/config/about_me";
 export default function ContactAndResume() {
   const router = useRouter();
 
@@ -25,7 +25,7 @@ export default function ContactAndResume() {
           isLoading={false} // Set to true to see the spinner
         />
         <Link
-          href={ResumeFigmaLink.link}
+          href={ResumeDriveLink.link}
           target="_blank" // Opens in a new tab
           rel="noopener noreferrer" // Security best practices
         >
