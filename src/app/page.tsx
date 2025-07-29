@@ -3,6 +3,7 @@ import TopNavigation from "@/components/TopNavigation/TopNavigation";
 import HeroSection from "@/components/HeroSection";
 import GridPatternLinearGradient from "@/components/Backgrounds/GridPatternLinearGradient";
 import ContactAndResume from "@/components/Contact/ContactAndResume";
+import SocketInitializer from "@/components/socket/SocketInitializer";
 
 export default function MainPage() {
   return (
@@ -16,6 +17,7 @@ export default function MainPage() {
         <div className="mt-[40px] px-[16px] md:px-[20px] lg:px-[180px]">
           <ContactAndResume />
         </div>
+        <SocketInitializer />
       </div>
     </>
   );
