@@ -8,8 +8,6 @@
   }
 }
 
-
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -66,8 +64,6 @@
   }
 }
 
-
-
 @layer base {
   * {
     @apply border-border;
@@ -75,4 +71,12 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Webkit */
 }
