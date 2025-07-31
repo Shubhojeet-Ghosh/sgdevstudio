@@ -13,6 +13,7 @@ import {
   RedisIcon,
   NodeJsIcon,
   SocketIoIcon,
+  GitIcon,
 } from "@/components/TechStacks/Icons";
 import {
   Tooltip,
@@ -161,6 +162,16 @@ function HeaderTechStack() {
                   </div>
                 </TooltipTrigger>
                 <TooltipContent>Socket.io</TooltipContent>
+              </Tooltip>
+            </motion.li>
+            <motion.li variants={animation}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="transition duration-200 flex items-center justify-center cursor-pointer">
+                    <GitIcon className="h-5 w-5" />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>Git</TooltipContent>
               </Tooltip>
             </motion.li>
           </motion.ul>
