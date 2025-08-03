@@ -5,11 +5,15 @@ import { GoogleIcon } from "@/components/TechStacks/Icons.tsx";
 import { toast } from "sonner";
 import nodeExpressAxios from "@/utils/node_express_apis";
 import Spinner from "@/components/ui/Spinner";
-
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 export default function LoginBox() {
   const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPwd, setShowPwd] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,9 +27,9 @@ export default function LoginBox() {
       const loginPayload = {
         email: email.trim().toLowerCase(),
       };
-      // if (password) {
-      //   loginPayload.password = password;
-      // }
+      if (showPassword && password) {
+        loginPayload.password = password;
+      }
       const res = await nodeExpressAxios.post(
         "/v1/auth/magic-link",
         loginPayload
@@ -33,7 +37,28 @@ export default function LoginBox() {
       // console.log(res);
       const response_data = res.data;
       if (response_data.success) {
-        toast.success("Magic link sent to your email");
+        if (response_data.user) {
+          Cookies.set(
+            "elysium_chat_session_token",
+            response_data.sessionToken,
+            {
+              path: "/",
+              expires: 30,
+            }
+          );
+          localStorage.setItem(
+            "first_name",
+            response_data?.user?.first_name || ""
+          );
+          localStorage.setItem(
+            "last_name",
+            response_data?.user?.last_name || ""
+          );
+          toast.success("Logged in successfully!");
+          router.push("/elysium-chat");
+        } else {
+          toast.success("Magic link sent to your email");
+        }
       } else {
         toast.error(response_data.message);
       }
@@ -82,6 +107,31 @@ export default function LoginBox() {
               className="mt-[2px] min-h-[40px]"
             />
           </div>
+          {showPassword && (
+            <div className="flex flex-col mt-3">
+              <p className="text-[14px] font-[500] ml-[2px] text-gray600">
+                Password
+              </p>
+              <CustomInput
+                id="password"
+                autoComplete="off"
+                type={showPwd ? "text" : "password"}
+                placeholder="Your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="mt-[2px] min-h-[40px]"
+              />
+              <label className="flex items-center gap-2 mt-2 text-[13px] text-gray-600 select-none cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={showPwd}
+                  onChange={() => setShowPwd((prev) => !prev)}
+                  className="accent-ecdarkblue"
+                />
+                Show password
+              </label>
+            </div>
+          )}
 
           <button
             type="submit"
@@ -91,18 +141,32 @@ export default function LoginBox() {
             {isLoading ? (
               <Spinner className="border-white" />
             ) : (
-              <span className="text-[12px]">Send Link...</span>
+              <span className="text-[12px]">
+                {showPassword ? "Log in..." : "Send Link..."}
+              </span>
             )}
           </button>
           <div className="flex items-center justify-end mt-[10px]">
-            <button
-              type="button"
-              className="text-ecnavy hover:underline text-[13px] mt-1 mb-4"
-              tabIndex={0}
-              // onClick={} // put your handler here
-            >
-              Log in using password...
-            </button>
+            {!showPassword && (
+              <button
+                type="button"
+                className="text-ecnavy hover:underline text-[13px] mt-1 mb-4"
+                tabIndex={0}
+                onClick={() => setShowPassword(true)}
+              >
+                Log in using password...
+              </button>
+            )}
+            {showPassword && (
+              <button
+                type="button"
+                className="text-ecnavy hover:underline text-[13px] mt-1 mb-4"
+                tabIndex={0}
+                onClick={() => setShowPassword(false)}
+              >
+                Log in using Magic Link...
+              </button>
+            )}
           </div>
           <div className="flex items-center w-full mt-[20px]">
             <div className="flex-grow border-t border-gray-300" />

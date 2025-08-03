@@ -6,6 +6,8 @@ import { toast } from "sonner";
 import nodeExpressAxios from "@/utils/node_express_apis";
 import Link from "next/link";
 import Logo from "@/components/ElysiumChat/LogoComponent";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 export default function VerifyPage() {
   const searchParams = useSearchParams();
@@ -13,7 +15,7 @@ export default function VerifyPage() {
   const [loading, setLoading] = useState(!!token);
   const [message, setMessage] = useState<string>("");
   const [verificationSuccess, setVerificationSuccess] = useState(false);
-
+  const router = useRouter();
   useEffect(() => {
     const verifyToken = async () => {
       if (!token) return;
@@ -29,6 +31,13 @@ export default function VerifyPage() {
           setMessage("Verification successful, redirecting to your account...");
           toast.success("Account verified! Redirecting you to your account...");
           setVerificationSuccess(true);
+          localStorage.setItem("first_name", res.data?.user?.first_name || "");
+          localStorage.setItem("last_name", res.data?.user?.last_name || "");
+          Cookies.set("elysium_chat_session_token", res.data?.sessionToken, {
+            path: "/",
+            expires: 30,
+          });
+          router.push("/elysium-chat");
         } else {
           setMessage("Verification failed...");
           toast.error("Verification failed.");
