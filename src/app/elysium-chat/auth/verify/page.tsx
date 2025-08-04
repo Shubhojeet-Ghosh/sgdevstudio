@@ -7,7 +7,6 @@ import nodeExpressAxios from "@/utils/node_express_apis";
 import Link from "next/link";
 import Logo from "@/components/ElysiumChat/LogoComponent";
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
 
 export default function VerifyPage() {
   const searchParams = useSearchParams();
@@ -15,7 +14,7 @@ export default function VerifyPage() {
   const [loading, setLoading] = useState(!!token);
   const [message, setMessage] = useState<string>("");
   const [verificationSuccess, setVerificationSuccess] = useState(false);
-  const router = useRouter();
+
   useEffect(() => {
     const verifyToken = async () => {
       if (!token) return;
