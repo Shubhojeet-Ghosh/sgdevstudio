@@ -39,8 +39,8 @@ export default function VerifyPage() {
           });
 
           setTimeout(() => {
-            router.push("/elysium-chat");
-          }, 100);
+            window.location.href = "/elysium-chat";
+          }, 150);
         } else {
           setMessage("Verification failed...");
           toast.error("Verification failed.");
