@@ -32,6 +32,14 @@ export default function VerifyPage() {
           setVerificationSuccess(true);
           localStorage.setItem("first_name", res.data?.user?.first_name || "");
           localStorage.setItem("last_name", res.data?.user?.last_name || "");
+          localStorage.setItem(
+            "profile_image_url",
+            res.data?.user?.profile_image_url || ""
+          );
+          localStorage.setItem(
+            "is_profile_complete",
+            res.data?.is_profile_complete ? "true" : "false"
+          );
           Cookies.set("elysium_chat_session_token", res.data?.sessionToken, {
             path: "/",
             expires: 30,

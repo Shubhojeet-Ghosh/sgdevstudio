@@ -1,11 +1,21 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CustomInput from "@/components/inputs/CustomInput.jsx";
 import { GoogleIcon } from "@/components/TechStacks/Icons.tsx";
 import { toast } from "sonner";
 import nodeExpressAxios from "@/utils/node_express_apis";
 import Spinner from "@/components/ui/Spinner";
 import Cookies from "js-cookie";
+import {
+  openGoogleOAuth,
+  getGoogleAccessTokenFromHash,
+} from "@/utils/googleAuth";
+
+const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+const REDIRECT_URI =
+  typeof window !== "undefined"
+    ? window.location.origin + "/elysium-chat/auth/login"
+    : "";
 
 export default function LoginBox() {
   const [email, setEmail] = useState("");
@@ -55,6 +65,15 @@ export default function LoginBox() {
             "last_name",
             response_data?.user?.last_name || ""
           );
+          localStorage.setItem(
+            "profile_image_url",
+            response_data?.user?.profile_image_url || ""
+          );
+          localStorage.setItem(
+            "is_profile_complete",
+            response_data?.is_profile_complete || true
+          );
+
           toast.success("Logged in successfully!", {
             position: "top-center",
           });
@@ -83,12 +102,72 @@ export default function LoginBox() {
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    const verifyGoogleLogin = async () => {
+      try {
+        const accessToken = getGoogleAccessTokenFromHash();
+        if (accessToken) {
+          setIsLoading(true);
+          console.log("Google access token:", accessToken);
+          const res = await nodeExpressAxios.post(
+            "/v1/auth/verify-google-login",
+            {
+              access_token: accessToken,
+            }
+          );
+          const response_data = res.data;
+          if (response_data.success) {
+            Cookies.set(
+              "elysium_chat_session_token",
+              response_data.sessionToken,
+              {
+                path: "/",
+                expires: 30,
+              }
+            );
+            localStorage.setItem(
+              "first_name",
+              response_data?.user?.first_name || ""
+            );
+            localStorage.setItem(
+              "last_name",
+              response_data?.user?.last_name || ""
+            );
+            localStorage.setItem(
+              "profile_image_url",
+              response_data?.user?.profile_image_url || ""
+            );
+            localStorage.setItem(
+              "is_profile_complete",
+              response_data?.is_profile_complete
+            );
+
+            toast.success("Logged in successfully!", {
+              position: "top-center",
+            });
+            setTimeout(() => {
+              window.location.href = "/elysium-chat";
+            }, 150);
+          } else {
+            toast.error(response_data.message, {
+              position: "top-center",
+            });
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    verifyGoogleLogin();
+  }, []);
+
   const handleGoogleLogin = () => {
-    toast("Google login feature is coming soon...", {
-      action: {
-        label: "Ok",
-      },
-      position: "top-center",
+    setIsLoading(true);
+    openGoogleOAuth({
+      clientId: GOOGLE_CLIENT_ID,
+      redirectUri: REDIRECT_URI,
     });
   };
 

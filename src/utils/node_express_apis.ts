@@ -1,7 +1,11 @@
 // utils/node_express_apis.ts
 import axios, { InternalAxiosRequestConfig } from "axios";
 
-const noAuthRoutes = ["/auth/login", "/auth/register"];
+const noAuthRoutes = [
+  "/auth/login",
+  "/auth/register",
+  "/auth/verify-google-login",
+];
 
 const nodeExpressAxios = axios.create({
   baseURL: process.env.NEXT_PUBLIC_EXPRESS_SERVER_BASE_URL || "",
