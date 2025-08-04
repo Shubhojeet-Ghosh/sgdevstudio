@@ -165,6 +165,7 @@ export default function LoginBox() {
 
   const handleGoogleLogin = () => {
     setIsLoading(true);
+    console.log("Redirect URI:", REDIRECT_URI);
     openGoogleOAuth({
       clientId: GOOGLE_CLIENT_ID,
       redirectUri: REDIRECT_URI,
