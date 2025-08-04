@@ -19,7 +19,9 @@ export default function LoginBox() {
     e.preventDefault();
     setIsLoading(true);
     if (!email) {
-      toast.error("Please enter your email");
+      toast.error("Please enter your email", {
+        position: "top-center",
+      });
       setIsLoading(false);
       return;
     }
@@ -54,16 +56,24 @@ export default function LoginBox() {
             "last_name",
             response_data?.user?.last_name || ""
           );
-          toast.success("Logged in successfully!");
+          toast.success("Logged in successfully!", {
+            position: "top-center",
+          });
           router.push("/elysium-chat");
         } else {
-          toast.success("Magic link sent to your email");
+          toast.success("Magic link sent to your email", {
+            position: "top-center",
+          });
         }
       } else {
-        toast.error(response_data.message);
+        toast.error(response_data.message, {
+          position: "top-center",
+        });
       }
     } catch {
-      toast.error("We are facing some issues, please try again later");
+      toast.error("We are facing some issues, please try again later", {
+        position: "top-center",
+      });
       // console.log(error);
     } finally {
       setIsLoading(false);

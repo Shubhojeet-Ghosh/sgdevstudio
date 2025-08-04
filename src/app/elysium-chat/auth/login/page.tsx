@@ -7,7 +7,7 @@ export default function ElysiumChatAuthPage() {
       <div className="flex flex-col items-start justify-center w-full px-[18px] py-[10px]">
         <Logo />
       </div>
-      <div className="flex items-center justify-center mt-[120px] lg:px-[20px] px-0">
+      <div className="flex items-center justify-center md:mt-[100px] mt-[60px] lg:px-[20px] px-0">
         <LoginBox />
       </div>
     </>
