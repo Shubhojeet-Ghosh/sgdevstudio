@@ -6,14 +6,13 @@ import { toast } from "sonner";
 import nodeExpressAxios from "@/utils/node_express_apis";
 import Spinner from "@/components/ui/Spinner";
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
+
 export default function LoginBox() {
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPwd, setShowPwd] = useState(false);
-  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,7 +58,10 @@ export default function LoginBox() {
           toast.success("Logged in successfully!", {
             position: "top-center",
           });
-          router.push("/elysium-chat");
+
+          setTimeout(() => {
+            window.location.href = "/elysium-chat";
+          }, 150);
         } else {
           toast.success("Magic link sent to your email", {
             position: "top-center",
