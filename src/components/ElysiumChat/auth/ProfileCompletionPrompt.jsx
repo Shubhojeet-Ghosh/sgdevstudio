@@ -6,6 +6,8 @@ import { toast } from "sonner";
 import { User } from "lucide-react";
 import { useRef } from "react";
 import nodeExpressAxios from "@/utils/node_express_apis";
+import fastApiAxios from "@/utils/fastapi_axios";
+
 import Cookies from "js-cookie";
 import Image from "next/image";
 
@@ -60,18 +62,52 @@ export default function ProfileCompletionPrompt() {
       toast.error("Password must be at least 8 characters long!");
       return;
     }
+
     setIsLoading(true);
-    const url = imageFile ? URL.createObjectURL(imageFile) : "";
+
+    let profileImageUrlToUse = imagePreviewUrl; // default to whatever is in localStorage (already uploaded)
     const token = Cookies.get("elysium_chat_session_token");
 
     try {
+      // **If user has selected a new image file (not just previewed from localStorage)**
+      if (imageFile && !imagePreviewUrl.startsWith("http")) {
+        // 1. Request presigned URL from FastAPI
+        const getPresigned = await fastApiAxios.post(
+          "/fastapi-playground/elysium-chat/generate-profile-image-presigned-url",
+          {
+            file_name: imageFile.name,
+            file_type: imageFile.type,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const { presigned_url, s3_object_url } = getPresigned.data;
+        // 2. Upload image to S3 via presigned_url
+        await fetch(presigned_url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": imageFile.type,
+          },
+          body: imageFile,
+        });
+
+        // 3. Use s3_object_url as the final profile image URL
+        profileImageUrlToUse = s3_object_url;
+        // Optionally update localStorage
+        localStorage.setItem("profile_image_url", profileImageUrlToUse);
+      }
+
+      // **Now send your profile completion POST as before, but with the S3 url**
       const res = await nodeExpressAxios.post(
         "/v1/auth/profile/complete",
         {
           first_name: firstName,
           last_name: lastName,
           password: password,
-          profile_image_url: url,
+          profile_image_url: profileImageUrlToUse,
         },
         {
           headers: {
@@ -79,7 +115,6 @@ export default function ProfileCompletionPrompt() {
           },
         }
       );
-      // console.log(res);
       const response_data = res.data;
       if (response_data.success) {
         toast.success("Profile completed!", { position: "top-center" });
