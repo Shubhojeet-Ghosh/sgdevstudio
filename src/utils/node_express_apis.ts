@@ -9,7 +9,7 @@ const noAuthRoutes = [
 
 const nodeExpressAxios = axios.create({
   baseURL: process.env.NEXT_PUBLIC_EXPRESS_SERVER_BASE_URL || "",
-  withCredentials: true,
+  withCredentials: false,
 });
 
 nodeExpressAxios.interceptors.request.use(

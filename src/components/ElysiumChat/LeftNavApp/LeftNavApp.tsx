@@ -20,7 +20,7 @@ export default function LeftNavApp() {
 
   return (
     <TooltipProvider delayDuration={100}>
-      <div className="fixed top-0 left-0 h-screen rounded-r-[12px] bg-ecdarkblue flex w-[70px] py-[20px] flex-col justify-between">
+      <div className="fixed top-0 left-0 h-[100dvh] rounded-r-[12px] bg-ecdarkblue flex w-[70px] py-[20px] flex-col justify-between">
         <div className="flex flex-col w-full">
           <div className="flex items-center justify-center">
             <Tooltip>
