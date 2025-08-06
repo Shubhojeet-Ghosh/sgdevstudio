@@ -266,14 +266,8 @@ export default function LoginBox() {
             onClick={handleGoogleLogin}
             className="min-h-[40px] mt-[20px] w-full flex items-center justify-center gap-2 py-2 border border-gray-300 rounded-[10px] text-[12px] font-semibold text-gray-700 bg-white hover:bg-gray-50 transition mb-2"
           >
-            {isLoading ? (
-              <Spinner className="border-ecdarkblue" />
-            ) : (
-              <>
-                <GoogleIcon />
-                <span className="text-[12px] ">Continue with Google</span>
-              </>
-            )}
+            <GoogleIcon />
+            <span className="text-[12px] ">Continue with Google</span>
           </button>
         </div>
       </div>
