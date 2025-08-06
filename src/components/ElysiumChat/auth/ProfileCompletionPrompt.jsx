@@ -32,6 +32,9 @@ export default function ProfileCompletionPrompt() {
   const lastName = useAppSelector(
     (state) => state.elysiumChatUserProfile.lastName
   );
+  const profilePicture = useAppSelector(
+    (state) => state.elysiumChatUserProfile.profilePicture
+  );
   const isProfileComplete = useAppSelector(
     (state) => state.elysiumChatUserProfile.isProfileComplete
   );
@@ -40,7 +43,10 @@ export default function ProfileCompletionPrompt() {
     if (!isProfileComplete) {
       setShowPrompt(true);
     }
-  }, [isProfileComplete]);
+    if (profilePicture) {
+      setImagePreviewUrl(profilePicture);
+    }
+  }, [isProfileComplete, profilePicture]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
