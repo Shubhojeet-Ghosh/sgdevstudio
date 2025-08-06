@@ -6,6 +6,15 @@ import { toast } from "sonner";
 import nodeExpressAxios from "@/utils/node_express_apis";
 import Spinner from "@/components/ui/Spinner";
 import Cookies from "js-cookie";
+import { useAppDispatch } from "@/store";
+import {
+  setFirstName,
+  setLastName,
+  setProfilePicture,
+  setIsProfileComplete,
+  resetUserProfile,
+} from "@/store/reducers/elysiumChatUserProfileSlice";
+
 import {
   openGoogleOAuth,
   getGoogleAccessTokenFromHash,
@@ -23,7 +32,7 @@ export default function LoginBox() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPwd, setShowPwd] = useState(false);
-
+  const dispatch = useAppDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -57,21 +66,14 @@ export default function LoginBox() {
               expires: 30,
             }
           );
-          localStorage.setItem(
-            "first_name",
-            response_data?.user?.first_name || ""
+
+          dispatch(
+            setProfilePicture(response_data?.user?.profile_image_url || "")
           );
-          localStorage.setItem(
-            "last_name",
-            response_data?.user?.last_name || ""
-          );
-          localStorage.setItem(
-            "profile_image_url",
-            response_data?.user?.profile_image_url || ""
-          );
-          localStorage.setItem(
-            "is_profile_complete",
-            response_data?.is_profile_complete || true
+          dispatch(setFirstName(response_data?.user?.first_name || ""));
+          dispatch(setLastName(response_data?.user?.last_name || ""));
+          dispatch(
+            setIsProfileComplete(response_data?.is_profile_complete ?? true)
           );
 
           toast.success("Logged in successfully!", {
@@ -103,6 +105,7 @@ export default function LoginBox() {
   };
 
   useEffect(() => {
+    dispatch(resetUserProfile());
     const verifyGoogleLogin = async () => {
       try {
         const accessToken = getGoogleAccessTokenFromHash();
@@ -125,23 +128,15 @@ export default function LoginBox() {
                 expires: 30,
               }
             );
-            localStorage.setItem(
-              "first_name",
-              response_data?.user?.first_name || ""
-            );
-            localStorage.setItem(
-              "last_name",
-              response_data?.user?.last_name || ""
-            );
-            localStorage.setItem(
-              "profile_image_url",
-              response_data?.user?.profile_image_url || ""
-            );
-            localStorage.setItem(
-              "is_profile_complete",
-              response_data?.is_profile_complete
-            );
 
+            dispatch(
+              setProfilePicture(response_data?.user?.profile_image_url || "")
+            );
+            dispatch(setFirstName(response_data?.user?.first_name || ""));
+            dispatch(setLastName(response_data?.user?.last_name || ""));
+            dispatch(
+              setIsProfileComplete(response_data?.is_profile_complete ?? true)
+            );
             toast.success("Logged in successfully!", {
               position: "top-center",
             });
@@ -161,7 +156,7 @@ export default function LoginBox() {
       }
     };
     verifyGoogleLogin();
-  }, []);
+  }, [dispatch]);
 
   const handleGoogleLogin = () => {
     setIsLoading(true);

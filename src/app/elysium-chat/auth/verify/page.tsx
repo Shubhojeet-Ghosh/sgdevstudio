@@ -7,14 +7,20 @@ import nodeExpressAxios from "@/utils/node_express_apis";
 import Link from "next/link";
 import Logo from "@/components/ElysiumChat/LogoComponent";
 import Cookies from "js-cookie";
-
+import { useAppDispatch } from "@/store";
+import {
+  setFirstName,
+  setLastName,
+  setProfilePicture,
+  setIsProfileComplete,
+} from "@/store/reducers/elysiumChatUserProfileSlice";
 export default function VerifyPage() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   const [loading, setLoading] = useState(!!token);
   const [message, setMessage] = useState<string>("");
   const [verificationSuccess, setVerificationSuccess] = useState(false);
-
+  const dispatch = useAppDispatch();
   useEffect(() => {
     const verifyToken = async () => {
       if (!token) return;
@@ -30,16 +36,10 @@ export default function VerifyPage() {
           setMessage("Verification successful, redirecting to your account...");
           toast.success("Account verified! Redirecting you to your account...");
           setVerificationSuccess(true);
-          localStorage.setItem("first_name", res.data?.user?.first_name || "");
-          localStorage.setItem("last_name", res.data?.user?.last_name || "");
-          localStorage.setItem(
-            "profile_image_url",
-            res.data?.user?.profile_image_url || ""
-          );
-          localStorage.setItem(
-            "is_profile_complete",
-            res.data?.is_profile_complete ? "true" : "false"
-          );
+          dispatch(setProfilePicture(res.data?.user?.profile_image_url || ""));
+          dispatch(setFirstName(res.data?.user?.first_name || ""));
+          dispatch(setLastName(res.data?.user?.last_name || ""));
+          dispatch(setIsProfileComplete(res.data?.is_profile_complete ?? true));
           Cookies.set("elysium_chat_session_token", res.data?.sessionToken, {
             path: "/",
             expires: 30,
@@ -62,7 +62,7 @@ export default function VerifyPage() {
     };
 
     if (token) verifyToken();
-  }, [token]);
+  }, [token, dispatch]);
 
   return (
     <>

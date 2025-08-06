@@ -1,5 +1,4 @@
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import { MessageSquareText, LogOut, User } from "lucide-react";
 import {
   Tooltip,
@@ -10,21 +9,17 @@ import {
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useAppSelector } from "@/store";
 
 export default function LeftNavApp() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const [profilePicture, setProfilePicture] = useState("");
+  // const [profilePicture, setProfilePicture] = useState("");
+  const profilePicture = useAppSelector(
+    (state) => state.elysiumChatUserProfile.profilePicture
+  );
   console.log(profilePicture);
-  useEffect(() => {
-    const profilePicture = localStorage.getItem("profile_image_url");
-    if (profilePicture !== "null" && profilePicture !== null) {
-      console.log("profilePicture", profilePicture);
-      setProfilePicture(profilePicture);
-    }
-  }, []);
-
   const handleLogout = () => {
     Cookies.remove("elysium_chat_session_token");
     router.push("/elysium-chat/auth/login");

@@ -5,7 +5,7 @@ import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 
 // Import Reducers
 import { settingsReducer } from "./reducers/settingsSlice";
-
+import { elysiumChatUserProfileReducer } from "./reducers/elysiumChatUserProfileSlice";
 // Noop storage logic to handle SSR issues
 const createNoopStorage = () => {
   return {
@@ -32,17 +32,24 @@ const settingsPersistConfig = {
   key: "settings",
   storage: storage,
 };
-
+const elysiumChatUserProfilePersistConfig = {
+  key: "elysiumChatUserProfile",
+  storage: storage,
+};
 // Apply persistReducer to settings
 const persistedSettingsReducer = persistReducer(
   settingsPersistConfig,
   settingsReducer
 );
-
+const persistedElysiumChatUserProfileReducer = persistReducer(
+  elysiumChatUserProfilePersistConfig,
+  elysiumChatUserProfileReducer
+);
 // Configure Redux Store
 export const store = configureStore({
   reducer: {
     settings: persistedSettingsReducer, // Persisted settings state
+    elysiumChatUserProfile: persistedElysiumChatUserProfileReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -7,38 +7,40 @@ import { User } from "lucide-react";
 import { useRef } from "react";
 import nodeExpressAxios from "@/utils/node_express_apis";
 import fastApiAxios from "@/utils/fastapi_axios";
-
+import { useAppDispatch, useAppSelector } from "@/store";
 import Cookies from "js-cookie";
 import Image from "next/image";
-
+import {
+  setFirstName,
+  setLastName,
+  setProfilePicture,
+  setIsProfileComplete,
+} from "@/store/reducers/elysiumChatUserProfileSlice";
 export default function ProfileCompletionPrompt() {
   const inputRef = useRef();
-
+  const dispatch = useAppDispatch();
   const [showPrompt, setShowPrompt] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+
   const [password, setPassword] = useState("");
   const [showPwd, setShowPwd] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const firstName = useAppSelector(
+    (state) => state.elysiumChatUserProfile.firstName
+  );
+  const lastName = useAppSelector(
+    (state) => state.elysiumChatUserProfile.lastName
+  );
+  const isProfileComplete = useAppSelector(
+    (state) => state.elysiumChatUserProfile.isProfileComplete
+  );
   useEffect(() => {
     // Show prompt logic
-    const profileComplete = localStorage.getItem("is_profile_complete");
-    if (profileComplete !== "true") {
+    if (!isProfileComplete) {
       setShowPrompt(true);
     }
-
-    // Prefill values from localStorage, if available
-    const storedFirst = localStorage.getItem("first_name");
-    const storedLast = localStorage.getItem("last_name");
-    const storedImageUrl = localStorage.getItem("profile_image_url");
-
-    if (storedFirst) setFirstName(storedFirst);
-    if (storedLast) setLastName(storedLast);
-    if (storedImageUrl) setImagePreviewUrl(storedImageUrl);
-  }, []);
+  }, [isProfileComplete]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -65,11 +67,10 @@ export default function ProfileCompletionPrompt() {
 
     setIsLoading(true);
 
-    let profileImageUrlToUse = imagePreviewUrl; // default to whatever is in localStorage (already uploaded)
+    let profileImageUrlToUse = imagePreviewUrl;
     const token = Cookies.get("elysium_chat_session_token");
 
     try {
-      // **If user has selected a new image file (not just previewed from localStorage)**
       if (imageFile && !imagePreviewUrl.startsWith("http")) {
         // 1. Request presigned URL from FastAPI
         const getPresigned = await fastApiAxios.post(
@@ -96,8 +97,7 @@ export default function ProfileCompletionPrompt() {
 
         // 3. Use s3_object_url as the final profile image URL
         profileImageUrlToUse = s3_object_url;
-        // Optionally update localStorage
-        localStorage.setItem("profile_image_url", profileImageUrlToUse);
+        dispatch(setProfilePicture(profileImageUrlToUse));
       }
 
       // **Now send your profile completion POST as before, but with the S3 url**
@@ -118,8 +118,12 @@ export default function ProfileCompletionPrompt() {
       const response_data = res.data;
       if (response_data.success) {
         toast.success("Profile completed!", { position: "top-center" });
-        localStorage.setItem("is_profile_complete", "true");
+
         setShowPrompt(false);
+        dispatch(setProfilePicture(profileImageUrlToUse));
+        dispatch(setFirstName(firstName));
+        dispatch(setLastName(lastName));
+        dispatch(setIsProfileComplete(true));
       } else {
         toast.error(response_data.message);
       }
@@ -190,7 +194,7 @@ export default function ProfileCompletionPrompt() {
             placeholder="Enter your first name"
             required
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={(e) => dispatch(setFirstName(e.target.value))}
             className="mt-[2px] min-h-[40px]"
             autoComplete="off"
           />
@@ -205,7 +209,7 @@ export default function ProfileCompletionPrompt() {
             type="text"
             placeholder="Enter your last name"
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={(e) => dispatch(setLastName(e.target.value))}
             className="mt-[2px] min-h-[40px]"
             autoComplete="off"
           />
