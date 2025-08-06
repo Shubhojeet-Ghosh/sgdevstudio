@@ -173,15 +173,15 @@ export default function LoginBox() {
       className="flex flex-col items-center justify-center h-full w-full"
     >
       <div className="flex flex-col p-6 md:w-[400px] w-full">
-        <p className="text-[20px] font-bold text-ecdarkblue text-center">
+        <p className="text-[20px] font-bold text-ecdarkblue dark:text-brightgray text-center">
           Welcome Back!
         </p>
-        <p className="text-[14px] text-gray600 text-center mb-2">
+        <p className="text-[14px] text-gray600 text-center dark:text-gray500 mb-2">
           Log into your account to get going...
         </p>
         <div className="flex flex-col mt-[25px]">
           <div className="flex flex-col">
-            <p className="text-[14px] font-[500] ml-[2px] text-gray600">
+            <p className="text-[14px] font-[500] ml-[2px] text-gray600 dark:text-brightgray">
               Email
             </p>
             <CustomInput
@@ -191,12 +191,12 @@ export default function LoginBox() {
               placeholder="elysium@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-[2px] min-h-[40px]"
+              className="mt-[2px] min-h-[40px] "
             />
           </div>
           {showPassword && (
             <div className="flex flex-col mt-3">
-              <p className="text-[14px] font-[500] ml-[2px] text-gray600">
+              <p className="text-[14px] font-[500] ml-[2px] text-gray600 dark:text-brightgray">
                 Password
               </p>
               <CustomInput
@@ -208,7 +208,7 @@ export default function LoginBox() {
                 onChange={(e) => setPassword(e.target.value)}
                 className="mt-[2px] min-h-[40px]"
               />
-              <label className="flex items-center gap-2 mt-2 text-[13px] text-gray-600 select-none cursor-pointer">
+              <label className="flex items-center gap-2 mt-2 text-[13px] text-gray-600 dark:text-brightgray select-none cursor-pointer">
                 <input
                   type="checkbox"
                   checked={showPwd}
@@ -223,10 +223,10 @@ export default function LoginBox() {
           <button
             type="submit"
             onClick={handleSubmit}
-            className="min-h-[40px] w-full mt-[20px] py-2 rounded-[10px] bg-ecdarkblue text-white text-[12px] transition flex items-center justify-center gap-2"
+            className="min-h-[40px] w-full mt-[20px] py-2 rounded-[10px] bg-ecdarkblue dark:bg-brightgray text-white dark:text-ecdarkblue text-[12px] transition flex items-center justify-center gap-2"
           >
             {isLoading ? (
-              <Spinner className="border-white" />
+              <Spinner className="border-white dark:border-ecdarkblue" />
             ) : (
               <span className="text-[12px]">
                 {showPassword ? "Log in..." : "Send Link..."}
@@ -237,7 +237,7 @@ export default function LoginBox() {
             {!showPassword && (
               <button
                 type="button"
-                className="text-ecnavy hover:underline text-[13px] mt-1 mb-4"
+                className="text-ecnavy dark:text-brightgray hover:underline text-[13px] mt-1 mb-4"
                 tabIndex={0}
                 onClick={() => setShowPassword(true)}
               >
@@ -247,7 +247,7 @@ export default function LoginBox() {
             {showPassword && (
               <button
                 type="button"
-                className="text-ecnavy hover:underline text-[13px] mt-1 mb-4"
+                className="text-ecnavy dark:text-brightgray hover:underline text-[13px] mt-1 mb-4"
                 tabIndex={0}
                 onClick={() => setShowPassword(false)}
               >
@@ -256,9 +256,11 @@ export default function LoginBox() {
             )}
           </div>
           <div className="flex items-center w-full mt-[20px]">
-            <div className="flex-grow border-t border-gray-300" />
-            <span className="mx-2 text-gray-500 text-sm">or</span>
-            <div className="flex-grow border-t border-gray-300" />
+            <div className="flex-grow border-t border-gray-300 dark:border-brightgray" />
+            <span className="mx-2 text-gray-500 dark:text-brightgray text-sm">
+              or
+            </span>
+            <div className="flex-grow border-t border-gray-300 dark:border-brightgray" />
           </div>
           {/* Google Login Button */}
           <button

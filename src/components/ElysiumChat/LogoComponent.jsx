@@ -8,7 +8,7 @@ export default function Logo() {
       <span className="text-[24px] font-[500] text-pastelprimarygreen tracking-tight">
         Elysium.
       </span>
-      <sup className="text-[18px] font-[600] text-ecdarkblue align-super">
+      <sup className="text-[18px] font-[600] text-ecdarkblue dark:text-brightgray align-super">
         chat
       </sup>
     </Link>
