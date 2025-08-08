@@ -5,3 +5,7 @@ export const ResumeFigmaLink = {
 export const ResumeDriveLink = {
   link: "https://drive.google.com/file/d/1PRnxwMjM8j3bYb4gcd6GOeJjUvM4pXLn/view?usp=drive_link",
 };
+
+export const ResumeCloudFrontLink = {
+  link: "https://d2hmd8t6yzm0hu.cloudfront.net/resume/Shubhojeet_Ghosh_resume_May_2025.pdf",
+};
