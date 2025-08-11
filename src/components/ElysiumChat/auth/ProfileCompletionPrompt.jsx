@@ -91,7 +91,8 @@ export default function ProfileCompletionPrompt() {
             },
           }
         );
-        const { presigned_url, s3_object_url } = getPresigned.data;
+        const { presigned_url, cdn_url } = getPresigned.data;
+        console.log("Uploading image to S3 via presigned_url", presigned_url);
         // 2. Upload image to S3 via presigned_url
         await fetch(presigned_url, {
           method: "PUT",
@@ -100,9 +101,10 @@ export default function ProfileCompletionPrompt() {
           },
           body: imageFile,
         });
+        console.log("Uploaded image to S3 via presigned_url", presigned_url);
 
-        // 3. Use s3_object_url as the final profile image URL
-        profileImageUrlToUse = s3_object_url;
+        // 3. Use cdn_url as the final profile image URL
+        profileImageUrlToUse = cdn_url;
         dispatch(setProfilePicture(profileImageUrlToUse));
       }
 
