@@ -21,12 +21,16 @@ interface FoundUser {
 
 interface UserProfileCardProps {
   foundUser: FoundUser;
+  name: string | null;
 }
 
 import { getSocket } from "@/lib/socket";
 import { formatDate } from "@/utils/formatDate";
 
-export default function UserProfileCard({ foundUser }: UserProfileCardProps) {
+export default function UserProfileCard({
+  foundUser,
+  name = null,
+}: UserProfileCardProps) {
   const socket = getSocket();
 
   const getIconAndTooltip = () => {
@@ -50,7 +54,7 @@ export default function UserProfileCard({ foundUser }: UserProfileCardProps) {
     if (!foundUser.is_contact) {
       console.log("Adding to contacts");
       socket.emit("add-to-contacts", {
-        alias_name: `${foundUser.first_name} ${foundUser.last_name}`,
+        alias_name: name || `${foundUser.first_name} ${foundUser.last_name}`,
         contact_email: foundUser.email,
       });
       return;

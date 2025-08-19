@@ -171,7 +171,7 @@ export default function AddNewContact() {
               </span>
             )}
             {!emailInvalid && !isFetching && foundUser && (
-              <UserProfileCard foundUser={foundUser} />
+              <UserProfileCard foundUser={foundUser} name={name} />
             )}
           </div>
         </div>
