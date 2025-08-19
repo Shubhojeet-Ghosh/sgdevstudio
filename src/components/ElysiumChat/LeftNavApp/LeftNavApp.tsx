@@ -8,12 +8,11 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
+
 import Image from "next/image";
 import { useAppSelector } from "@/store";
 
 export default function LeftNavApp() {
-  const router = useRouter();
   const pathname = usePathname();
 
   // const [profilePicture, setProfilePicture] = useState("");
