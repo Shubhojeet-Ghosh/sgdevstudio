@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import CustomInput from "@/components/inputs/CustomInput.jsx";
+import CustomInput from "@/components/inputs/CustomInput";
 import Spinner from "@/components/ui/Spinner";
 import { toast } from "sonner";
 import { User } from "lucide-react";

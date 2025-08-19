@@ -3,7 +3,6 @@ import TopNavigation from "@/components/TopNavigation/TopNavigation";
 import HeroSection from "@/components/HeroSection";
 import GridPatternLinearGradient from "@/components/Backgrounds/GridPatternLinearGradient";
 import ContactAndResume from "@/components/Contact/ContactAndResume";
-import SocketInitializer from "@/components/socket/SocketInitializer";
 import MyTechStacks from "@/components/TechStacks/MyTechStacks";
 
 export default function MainPage() {
@@ -21,7 +20,6 @@ export default function MainPage() {
         <div className="lg:mt-[120px] mt-[60px] px-[16px] md:px-[20px] lg:px-[180px]">
           <MyTechStacks />
         </div>
-        <SocketInitializer />
       </div>
     </>
   );

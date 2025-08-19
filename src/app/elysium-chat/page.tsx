@@ -1,7 +1,9 @@
-"use client";
+import SocketInitializer from "@/components/socket/ElysiumSocketInitializer";
 
 import LeftNavApp from "@/components/ElysiumChat/LeftNavApp/LeftNavApp";
 import ProfileCompletionPrompt from "@/components/ElysiumChat/auth/ProfileCompletionPrompt";
+import SidebarLayout from "@/components/ElysiumChat/SidebarLayout";
+import ContactsSocketListener from "@/components/ElysiumChat/ContactsSocketListener";
 
 export default function ElysiumChatAuthPage() {
   return (
@@ -10,6 +12,9 @@ export default function ElysiumChatAuthPage() {
         <LeftNavApp />
       </div>
       <ProfileCompletionPrompt />
+      <SocketInitializer />
+      <SidebarLayout />
+      <ContactsSocketListener />
     </>
   );
 }

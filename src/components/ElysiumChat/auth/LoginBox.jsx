@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import CustomInput from "@/components/inputs/CustomInput.jsx";
+import CustomInput from "@/components/inputs/CustomInput";
 import { GoogleIcon } from "@/components/TechStacks/Icons.tsx";
 import { toast } from "sonner";
 import nodeExpressAxios from "@/utils/node_express_apis";
