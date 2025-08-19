@@ -23,7 +23,8 @@ export default function LeftNavApp() {
   console.log(profilePicture);
   const handleLogout = () => {
     Cookies.remove("elysium_chat_session_token");
-    router.push("/elysium-chat/auth/login");
+
+    window.location.href = "/elysium-chat/auth/login";
   };
 
   return (
