@@ -10,19 +10,21 @@ import {
 import Cookies from "js-cookie";
 
 import Image from "next/image";
-import { useAppSelector } from "@/store";
+import { useAppSelector, useAppDispatch } from "@/store";
+import { resetChatNavigation } from "@/store/reducers/elysiumChatNavigationSlice";
 
 export default function LeftNavApp() {
   const pathname = usePathname();
-
+  const dispatch = useAppDispatch();
   // const [profilePicture, setProfilePicture] = useState("");
   const profilePicture = useAppSelector(
     (state) => state.elysiumChatUserProfile.profilePicture
   );
   console.log(profilePicture);
-  const handleLogout = () => {
-    Cookies.remove("elysium_chat_session_token");
 
+  const handleLogout = () => {
+    dispatch(resetChatNavigation());
+    Cookies.remove("elysium_chat_session_token");
     window.location.href = "/elysium-chat/auth/login";
   };
 
