@@ -7,5 +7,5 @@ export const ResumeDriveLink = {
 };
 
 export const ResumeCloudFrontLink = {
-  link: "https://cdn.sgdevstudio.in/resume/Shubhojeet_Ghosh_resume_May_2025.pdf",
+  link: "https://cdn.sgdevstudio.in/resume/shubhojeet.pdf",
 };
