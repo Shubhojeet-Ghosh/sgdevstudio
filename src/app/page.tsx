@@ -4,6 +4,8 @@ import HeroSection from "@/components/HeroSection";
 import GridPatternLinearGradient from "@/components/Backgrounds/GridPatternLinearGradient";
 import ContactAndResume from "@/components/Contact/ContactAndResume";
 import MyTechStacks from "@/components/TechStacks/MyTechStacks";
+import PersonSchema from "@/components/SEO/PersonSchema";
+import Footer from "@/components/Footer/Footer";
 
 export default function MainPage() {
   return (
@@ -20,7 +22,11 @@ export default function MainPage() {
         <div className="lg:mt-[120px] mt-[60px] px-[16px] md:px-[20px] lg:px-[180px]">
           <MyTechStacks />
         </div>
+        <div className="lg:mt-[120px] mt-[60px] px-[16px] md:px-[20px] lg:px-[180px]">
+          <Footer />
+        </div>
       </div>
+      <PersonSchema />
     </>
   );
 }

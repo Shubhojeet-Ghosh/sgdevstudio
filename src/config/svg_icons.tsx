@@ -1,3 +1,5 @@
+import React from "react";
+
 const Icons: Record<string, JSX.Element> = {
   githubTopNav: (
     <svg
@@ -20,6 +22,30 @@ const Icons: Record<string, JSX.Element> = {
       fill="currentColor"
     >
       <path d="M20.447 20.452h-3.9V14.9c0-1.327-.026-3.037-1.852-3.037-1.854 0-2.14 1.45-2.14 2.943v5.646h-3.9V9h3.742v1.561h.053c.522-.99 1.798-2.038 3.706-2.038 3.963 0 4.697 2.604 4.697 5.988v5.94zM5.337 7.433c-1.25 0-2.267-1.017-2.267-2.268a2.268 2.268 0 1 1 4.535 0c0 1.251-1.017 2.268-2.268 2.268zm1.948 13.02H3.39V9h3.896v11.453zM22.225 0H1.771C.792 0 0 .756 0 1.69v20.617C0 23.244.792 24 1.771 24h20.453c.98 0 1.775-.756 1.775-1.69V1.69C24 .756 23.205 0 22.225 0z" />
+    </svg>
+  ),
+
+  // New X icon (logo for X / “X” brand)
+  xTopNav: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-4 h-4 text-darkerblack dark:text-brightgray"
+      viewBox="0 0 16 16"
+      fill="currentColor"
+      strokeWidth="1"
+    >
+      <path d="M12.6 0.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867 -5.07 -4.425 5.07H0.316l5.733 -6.57L0 0.75h5.063l3.495 4.633L12.601 0.75Zm-0.86 13.028h1.36L4.323 2.145H2.865z" />
+    </svg>
+  ),
+  mailTopNav: (
+    <svg
+      role="img"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-4 h-4 text-darkerblack dark:text-brightgray"
+      fill="currentColor"
+    >
+      <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 12.707 4 6.01V6h16zm-16 12V8.383l7.555 4.808a1 1 0 0 0 1.032 0L20 8.383V18H4z" />
     </svg>
   ),
 };
