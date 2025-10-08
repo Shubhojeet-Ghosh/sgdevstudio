@@ -6,6 +6,7 @@ import ContactAndResume from "@/components/Contact/ContactAndResume";
 import MyTechStacks from "@/components/TechStacks/MyTechStacks";
 import PersonSchema from "@/components/SEO/PersonSchema";
 import Footer from "@/components/Footer/Footer";
+import RegisterVisitor from "@/components/connect/RegisterVisitor";
 
 export default function MainPage() {
   return (
@@ -27,6 +28,7 @@ export default function MainPage() {
         </div>
       </div>
       <PersonSchema />
+      <RegisterVisitor />
     </>
   );
 }

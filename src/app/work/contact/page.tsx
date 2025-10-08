@@ -4,6 +4,7 @@ import ContactHeroSection from "@/components/Contact/ContactHeroSection";
 import ContactContent from "@/components/Contact/ContactContent";
 import GridPatternLinearGradient from "@/components/Backgrounds/GridPatternLinearGradient";
 import Footer from "@/components/Footer/Footer";
+import RegisterVisitor from "@/components/connect/RegisterVisitor";
 
 export default function ContactPage() {
   return (
@@ -21,6 +22,7 @@ export default function ContactPage() {
           <Footer />
         </div>
       </div>
+      <RegisterVisitor />
     </>
   );
 }

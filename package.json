@@ -1,6 +1,6 @@
 {
   "name": "sgdevstudio",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,7 +13,7 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.1.8",
     "@reduxjs/toolkit": "^2.6.1",
-    "axios": "^1.11.0",
+    "axios": "^1.12.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
@@ -33,6 +33,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@types/axios": "^0.9.36",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",

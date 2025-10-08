@@ -42,7 +42,7 @@ export default function AddNewContact() {
           },
         }
       );
-      const user_data = res.data;
+      const user_data: any = res.data;
       console.log(`User Data fetched for ${email} :`, user_data);
       if (user_data.success) {
         console.log("user_data.user", user_data.user);

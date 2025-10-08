@@ -28,7 +28,7 @@ export default function VerifyPage() {
       setLoading(true);
       setMessage("");
       try {
-        const res = await nodeExpressAxios.post("/v1/auth/verify", {
+        const res: any = await nodeExpressAxios.post("/v1/auth/verify", {
           token,
         });
         const { success } = res.data;

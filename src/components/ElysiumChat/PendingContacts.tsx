@@ -42,7 +42,7 @@ export default function PendingContacts() {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        const data = res.data;
+        const data: any = res.data;
         if (data.success) {
           setFoundUser(data.user);
         }

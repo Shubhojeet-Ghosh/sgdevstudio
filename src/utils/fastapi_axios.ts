@@ -1,5 +1,5 @@
 // utils/fastapi_axios.ts
-import axios, { InternalAxiosRequestConfig } from "axios";
+import axios from "axios";
 
 const noAuthRoutes = ["/auth/login"];
 
@@ -11,7 +11,7 @@ const fastApiAxios = axios.create({
 
 // Request Interceptor
 fastApiAxios.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
+  (config: any) => {
     // Remove Authorization for public routes
     if (
       config.url &&

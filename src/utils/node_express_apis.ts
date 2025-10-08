@@ -1,5 +1,5 @@
 // utils/node_express_apis.ts
-import axios, { InternalAxiosRequestConfig } from "axios";
+import axios from "axios";
 
 const noAuthRoutes = [
   "/auth/login",
@@ -13,7 +13,7 @@ const nodeExpressAxios = axios.create({
 });
 
 nodeExpressAxios.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
+  (config: any) => {
     if (
       config.url &&
       noAuthRoutes.some((route) => config.url?.includes(route))
