@@ -9,3 +9,7 @@ export const ResumeDriveLink = {
 export const ResumeCloudFrontLink = {
   link: "https://cdn.sgdevstudio.in/resume/shubhojeet.pdf",
 };
+
+export const AbutMePictureURL = {
+  link: "https://cdn.sgdevstudio.in/assets/shubh_anime_22aug.png",
+};

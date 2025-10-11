@@ -7,6 +7,7 @@ import MyTechStacks from "@/components/TechStacks/MyTechStacks";
 import PersonSchema from "@/components/SEO/PersonSchema";
 import Footer from "@/components/Footer/Footer";
 import RegisterVisitor from "@/components/connect/RegisterVisitor";
+import AboutMeSection from "@/components/AboutMe/AboutMeComponent";
 
 export default function MainPage() {
   return (
@@ -22,6 +23,9 @@ export default function MainPage() {
         </div>
         <div className="lg:mt-[120px] mt-[60px] px-[16px] md:px-[20px] lg:px-[180px]">
           <MyTechStacks />
+        </div>
+        <div className="lg:mt-[120px] mt-[60px] px-[16px] md:px-[20px] lg:px-[180px]">
+          <AboutMeSection />
         </div>
         <div className="lg:mt-[120px] mt-[60px] px-[16px] md:px-[20px] lg:px-[180px]">
           <Footer />
