@@ -23,9 +23,12 @@ export const registerContact = async (
   return response.data;
 };
 
-export const registerVisitor = async () => {
+export const registerVisitor = async (payload: any) => {
   try {
-    const response = await apiClient.get("/v1/connect/register-visitor");
+    const response = await apiClient.post(
+      "/v1/connect/register-visitor",
+      payload
+    );
     return response.data;
   } catch (error) {
     console.error("Error registering visitor:", error);
