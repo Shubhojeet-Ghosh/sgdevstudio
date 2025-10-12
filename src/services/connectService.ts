@@ -17,7 +17,7 @@ export const registerContact = async (
   payload: ContactPayload
 ): Promise<ContactResponse> => {
   const response = await apiClient.post<ContactResponse>(
-    "/api/register-contact",
+    "v1/connect/contact-submission",
     payload
   );
   return response.data;
