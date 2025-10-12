@@ -1,5 +1,3 @@
-"use client";
-
 import LeftProfileSection from "./LeftProfileSection";
 import RightProfileSection from "./RightProfileSection";
 

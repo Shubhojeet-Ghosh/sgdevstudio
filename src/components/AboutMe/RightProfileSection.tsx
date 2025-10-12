@@ -1,4 +1,3 @@
-"use client";
 import { Code2, Server, Bot } from "lucide-react";
 
 export default function RightProfileSection() {

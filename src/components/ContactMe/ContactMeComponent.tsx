@@ -1,5 +1,3 @@
-"use client";
-
 import LeftContactSection from "./LeftContactSection";
 import RightContactForm from "./RightContactForm";
 
