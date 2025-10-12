@@ -21,7 +21,7 @@ export default function LeftContactSection() {
       <div className="flex items-center justify-start">
         <Link
           href="mailto:shubhojeet.official@gmail.com "
-          className="px-[16px] py-[12px] rounded-[12px] bg-gradientpurple/60 border-[2px] border-gradientpurple hover:bg-gradientpurple text-[14px] font-[700] text-white flex items-center justify-center gap-2 transition-all duration-300 "
+          className="px-[16px] py-[12px] rounded-[12px] bg-gradientpurple hover:bg-gradientpurple/60 text-[14px] font-[700] text-white flex items-center justify-center gap-2 transition-all duration-300 "
         >
           <Send className="w-4 h-4" />
           shubhojeet.official@gmail.com
