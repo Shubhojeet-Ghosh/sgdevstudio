@@ -1,4 +1,4 @@
-import { Code2, Server, Bot } from "lucide-react";
+import { Code2, Server, Bot, Cloud } from "lucide-react";
 
 export default function RightProfileSection() {
   return (
@@ -16,7 +16,7 @@ export default function RightProfileSection() {
         <p className="lg:text-[16px] md:text-[14px] text-[14px] font-[400] text-justify">
           I&apos;m a{" "}
           <strong className="font-[800] bg-gradient-to-r from-gradientpurple to-gradientpink bg-clip-text text-transparent">
-            senior software engineer
+            software engineer
           </strong>{" "}
           passionate about building{" "}
           <strong className="font-[700] bg-gradient-to-r from-gradientpurple to-gradientpink bg-clip-text text-transparent">
@@ -37,22 +37,26 @@ export default function RightProfileSection() {
       </div>
       <div className="flex flex-col mt-[20px]">
         <p className="text-[20px] font-[600] mb-4 text-black dark:text-white">
-          What I Do
+          What I Specialize In
         </p>
 
         <div className="flex flex-wrap gap-3">
           {[
             {
-              name: "Frontend Development",
-              icon: <Code2 className="w-4 h-4 text-[#a684ff]" />, // amber
-            },
-            {
               name: "Backend Engineering",
               icon: <Server className="w-4 h-4 text-[#ff8904]" />, // green
             },
             {
+              name: "Frontend Development",
+              icon: <Code2 className="w-4 h-4 text-[#a684ff]" />, // amber
+            },
+            {
               name: "AI Agents",
               icon: <Bot className="w-4 h-4 text-[#05df72]" />, // blue
+            },
+            {
+              name: "Cloud Infrastructure",
+              icon: <Cloud className="w-4 h-4 text-[#4dcdff]" />, // yellow-orange tone
             },
           ].map((item, index) => (
             <span

@@ -13,9 +13,8 @@ export default function HeroSection() {
       <div className="w-full mt-[16px]">
         <div className="w-[85%] lg:w-[70%]">
           <p className="text-[14px] md:text-[20px] font-[400] text-justify animate-blur-reveal">
-            a{" "}
-            <strong className="font-[800]">full-stack product engineer</strong>{" "}
-            who specializes in building{" "}
+            a <strong className="font-[800]">software engineer</strong> who
+            specializes in building{" "}
             <strong className="font-[800] bg-gradient-to-r from-gradientpurple to-gradientpink bg-clip-text text-transparent">
               AI-powered applications
             </strong>{" "}
