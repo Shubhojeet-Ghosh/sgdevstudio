@@ -8,6 +8,7 @@ import PersonSchema from "@/components/SEO/PersonSchema";
 import Footer from "@/components/Footer/Footer";
 import RegisterVisitor from "@/components/connect/RegisterVisitor";
 import AboutMeSection from "@/components/AboutMe/AboutMeComponent";
+import AboutMeHeader from "@/components/AboutMe/AboutMeHeader";
 import ContactMeSection from "@/components/ContactMe/ContactMeComponent";
 import ProjectsSection from "@/components/Projects/ProjectsSection";
 import ProjectsSectionHeader from "@/components/Projects/ProjectsSectionHeader";
@@ -28,7 +29,10 @@ export default function MainPage() {
           <MyTechStacks />
         </div>
         <div className="lg:mt-[120px] mt-[60px] px-[16px] md:px-[20px] lg:px-[180px]">
-          <AboutMeSection />
+          <AboutMeHeader />
+          <div className="mt-[48px]">
+            <AboutMeSection />
+          </div>
         </div>
         <div className="lg:mt-[120px] mt-[60px] px-[16px] md:px-[20px] lg:px-[180px]">
           <ProjectsSectionHeader />
