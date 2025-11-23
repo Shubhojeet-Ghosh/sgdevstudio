@@ -241,23 +241,12 @@ const ProjectsSection: React.FC = () => {
 
   return (
     <motion.section
-      className="pt-20 pb-2"
+      className="pb-2"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
     >
-      {/* Section Header */}
-      <div className="flex flex-col mb-4 lg:mb-6 ">
-        <p className="md:text-[32px] lg:text-[36px] text-[32px] font-[800] leading-[0.9] text-pastelprimarygreen">
-          My Projects
-        </p>
-        <p className="mt-[24px] lg:text-[24px] md:text-[20px] text-[14px] font-[700] dark:text-brightgray text-darkerblack leading-tight">
-          Here are some of the projects I have worked on. Each one represents a
-          unique challenge and learning experience.
-        </p>
-      </div>
-
       {/* Main Projects Section */}
       <div className="relative">
         <div
@@ -442,11 +431,11 @@ const ProjectsSection: React.FC = () => {
         </div>
 
         {/* Mobile Layout - Original Stacked Layout */}
-        <div className="lg:hidden space-y-16 px-4 sm:px-6">
+        <div className="lg:hidden space-y-8 px-4 sm:px-6">
           {projectsData.map((project, index) => (
             <motion.div
               key={project.project_name}
-              className="space-y-6"
+              className="space-y-4"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -454,53 +443,113 @@ const ProjectsSection: React.FC = () => {
             >
               <ProjectCard project={project} index={index} />
               <div className="space-y-4">
-                <a
-                  href={project.project_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/link text-xl font-bold text-gray-900 dark:text-white hover:underline transition-all duration-200 flex items-center gap-2"
-                >
-                  {project.project_name}
-                  <ExternalLink className="w-4 h-4 opacity-0 group-hover/link:opacity-100 transition-opacity duration-200" />
-                </a>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                <div className="flex items-center gap-4 mb-4">
+                  <motion.div
+                    className="h-1 w-8 opacity-60 rounded-full"
+                    style={{
+                      backgroundColor: `rgb(${getColorValue(
+                        project.gradient_colors.base
+                      )})`,
+                    }}
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      delay: 0.2,
+                      duration: 0.8,
+                      ease: [0.4, 0, 0.2, 1] as const,
+                    }}
+                  />
+                  <a
+                    href={project.project_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/link text-xl font-bold text-gray-900 dark:text-white hover:underline transition-all duration-200 flex items-center gap-2"
+                  >
+                    {project.project_name}
+                    <ExternalLink className="w-4 h-4 opacity-0 group-hover/link:opacity-100 transition-opacity duration-200" />
+                  </a>
+                </div>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-6 leading-relaxed">
                   {project.project_description}
                 </p>
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                <div className="mb-6">
+                  <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
                     Key Features:
                   </h4>
                   <ul className="space-y-2">
                     {project.project_points.map((point, pointIndex) => (
-                      <li
+                      <motion.li
                         key={pointIndex}
-                        className="flex items-start gap-3 text-gray-600 dark:text-gray-300"
+                        className="flex items-start gap-3 text-xs text-gray-600 dark:text-gray-300"
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: pointIndex * 0.1 }}
                       >
-                        <span className="flex-shrink-0 w-2 h-2 bg-cyan-500 rounded-full mt-2" />
+                        <motion.span
+                          className="flex-shrink-0 w-4 h-4 mt-1"
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            delay: pointIndex * 0.1 + 0.2,
+                            duration: 0.3,
+                          }}
+                          style={{
+                            color: `rgb(${getColorValue(
+                              project.gradient_colors.base
+                            )})`,
+                          }}
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            className="w-full h-full"
+                          >
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                          </svg>
+                        </motion.span>
                         <span>{point}</span>
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
                     Tech Stack:
                   </h4>
                   <div className="overflow-x-auto pb-[5px] flex scrollbar-hide">
                     <TooltipProvider delayDuration={150}>
-                      <ul className="flex items-center gap-3.5 text-slate-500 dark:text-slate-500">
+                      <motion.ul
+                        className="flex items-center gap-3.5 text-slate-500 dark:text-slate-500"
+                        initial="hide"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                        transition={{
+                          delayChildren: 0.3,
+                          staggerChildren: 0.025,
+                        }}
+                      >
                         {project.tech_stack_used.map((tech, techIndex) => {
                           const techInfo = iconMap[tech];
                           const IconComponent = techInfo?.component;
                           return (
-                            <li key={techIndex}>
+                            <motion.li
+                              key={techIndex}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              whileInView={{ opacity: 1, scale: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: techIndex * 0.05 }}
+                            >
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <div
+                                  <motion.div
                                     className={`transition duration-200 ${
                                       techInfo?.hoverColor ||
                                       "hover:text-[#47A248]"
                                     } flex items-center justify-center cursor-pointer`}
+                                    whileHover={{ scale: 1.05 }}
                                   >
                                     {IconComponent && tech === "NodeJsIcon" ? (
                                       <IconComponent className="h-9 w-9" />
@@ -513,16 +562,16 @@ const ProjectsSection: React.FC = () => {
                                     ) : IconComponent ? (
                                       <IconComponent className="h-6 w-6" />
                                     ) : null}
-                                  </div>
+                                  </motion.div>
                                 </TooltipTrigger>
                                 <TooltipContent>
                                   {techInfo?.name || tech.replace("Icon", "")}
                                 </TooltipContent>
                               </Tooltip>
-                            </li>
+                            </motion.li>
                           );
                         })}
-                      </ul>
+                      </motion.ul>
                     </TooltipProvider>
                   </div>
                 </div>

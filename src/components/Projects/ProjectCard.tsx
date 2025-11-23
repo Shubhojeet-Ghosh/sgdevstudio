@@ -41,7 +41,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-8 lg:py-0">
+    <div className="py-4 lg:min-h-screen lg:flex lg:items-center lg:justify-center lg:py-0">
       <motion.a
         href={project.project_url}
         target="_blank"
