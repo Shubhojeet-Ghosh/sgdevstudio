@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import WebsiteSchema from "@/components/SEO/WebsiteSchema";
 
 import dynamic from "next/dynamic";
 
@@ -15,8 +16,11 @@ const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta", // Optional for CSS usage
 });
 
+const baseUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://sgdevstudio.in";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sgdevstudio.in"),
+  metadataBase: new URL(baseUrl),
   title: {
     default: "Shubhojeet Ghosh | Senior Software Engineer",
     template: "%s | Shubhojeet Ghosh",
@@ -34,7 +38,7 @@ export const metadata: Metadata = {
     title: "Shubhojeet Ghosh | Senior Software Engineer",
     description:
       "Senior Software Engineer specializing in AI-powered systems, intelligent agents, and end-to-end web applications.",
-    url: "https://sgdevstudio.in",
+    url: baseUrl,
     siteName: "sgdevstudio.in",
     images: [
       {
@@ -59,8 +63,13 @@ export const metadata: Metadata = {
   },
 
   // small helpful extras:
-  alternates: { canonical: "https://sgdevstudio.in" },
+  alternates: { canonical: baseUrl },
   icons: { icon: "/favicon.ico" },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
 };
 
 export default function RootLayout({
@@ -71,6 +80,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${plusJakarta.variable} antialiased font-jakarta`}>
+        <WebsiteSchema />
         <ReduxProvider> {children}</ReduxProvider>
         <Toaster />
       </body>

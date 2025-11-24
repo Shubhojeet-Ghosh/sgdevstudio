@@ -3,12 +3,15 @@
 import React from "react";
 
 export default function PersonSchema() {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://sgdevstudio.in";
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Shubhojeet Ghosh",
     jobTitle: "Senior Software Engineer",
-    url: "https://sgdevstudio.in",
+    url: baseUrl,
     image: "https://cdn.sgdevstudio.in/assets/og-image.png", // optional but recommended
     sameAs: [
       "https://github.com/shubhojeet-ghosh", // 🔁 replace with your GitHub
