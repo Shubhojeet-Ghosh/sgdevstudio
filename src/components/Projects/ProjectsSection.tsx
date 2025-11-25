@@ -33,46 +33,37 @@ const ProjectsSection: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
-
+      let maxVisibility = 0;
       let newActiveIndex = 0;
 
       projectRefs.current.forEach((ref, index) => {
-        if (ref) {
-          const rect = ref.getBoundingClientRect();
-          const elementTop = scrollPosition + rect.top;
-          const elementBottom = elementTop + rect.height;
+        if (!ref) return;
 
-          // Get the viewport top and bottom positions
-          const viewportTop = scrollPosition;
-          const viewportBottom = scrollPosition + windowHeight;
+        const rect = ref.getBoundingClientRect();
+        const viewportTop = 0;
+        const viewportBottom = windowHeight;
 
-          // Check if the element is visible in the viewport
-          if (elementTop < viewportBottom && elementBottom > viewportTop) {
-            // Calculate how much of the element is visible
-            const visibleTop = Math.max(elementTop, viewportTop);
-            const visibleBottom = Math.min(elementBottom, viewportBottom);
-            const visibleHeight = visibleBottom - visibleTop;
-            const totalHeight = elementBottom - elementTop;
-            const visibilityRatio = visibleHeight / totalHeight;
+        // Skip elements that are completely outside the viewport
+        if (rect.bottom <= viewportTop || rect.top >= viewportBottom) {
+          return;
+        }
 
-            // If more than 50% of the element is visible, make it active
-            if (visibilityRatio > 0.5) {
-              newActiveIndex = index;
-            }
-            // If we're at the last element and it's partially visible, keep it active
-            else if (
-              index === projectRefs.current.length - 1 &&
-              visibilityRatio > 0
-            ) {
-              newActiveIndex = index;
-            }
-          }
+        const visibleTop = Math.max(rect.top, viewportTop);
+        const visibleBottom = Math.min(rect.bottom, viewportBottom);
+        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+        const totalHeight = rect.height;
+        const visibilityRatio = visibleHeight / totalHeight;
+
+        if (visibilityRatio > maxVisibility) {
+          maxVisibility = visibilityRatio;
+          newActiveIndex = index;
         }
       });
 
-      setActiveProjectIndex(newActiveIndex);
+      setActiveProjectIndex((prev) =>
+        prev === newActiveIndex ? prev : newActiveIndex
+      );
     };
 
     // Use throttled scroll event for better performance
