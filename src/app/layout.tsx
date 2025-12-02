@@ -64,7 +64,14 @@ export const metadata: Metadata = {
 
   // small helpful extras:
   alternates: { canonical: baseUrl },
-  icons: { icon: "/favicon.ico" },
+  icons: {
+    icon: [
+      { url: `${baseUrl}/favicon.ico`, sizes: "any" },
+      { url: `${baseUrl}/favicon.ico`, type: "image/x-icon" },
+    ],
+    shortcut: `${baseUrl}/favicon.ico`,
+    apple: `${baseUrl}/favicon.ico`,
+  },
   viewport: {
     width: "device-width",
     initialScale: 1,
