@@ -16,8 +16,7 @@ const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta", // Optional for CSS usage
 });
 
-const baseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://sgdevstudio.in";
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sgdevstudio.in";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
