@@ -66,9 +66,12 @@ export default function Footer() {
       {/* Copyright */}
       <p className="text-[12px] font-medium opacity-80">
         © {currentYear}{" "}
-        <span className="font-semibold bg-gradient-to-r from-gradientpurple to-primarycyan dark:from-white dark:to-primarycyan bg-clip-text text-transparent">
+        <Link
+          href="/shubhojeet"
+          className="font-semibold bg-gradient-to-r from-gradientpurple to-primarycyan dark:from-white dark:to-primarycyan bg-clip-text text-transparent hover:opacity-80 transition-opacity duration-300 cursor-pointer"
+        >
           Shubhojeet Ghosh
-        </span>
+        </Link>
         . All rights reserved.
       </p>
     </footer>

@@ -13,3 +13,11 @@ export const ResumeCloudFrontLink = {
 export const AbutMePictureURL = {
   link: "https://cdn.sgdevstudio.in/assets/shubh_anime_22aug.png",
 };
+
+export const AbutMePictureURL2 = {
+  link: "https://cdn.sgdevstudio.in/assets/shubh_01_cropped_21_dec.webp",
+};
+
+export const CasualPictureURL = {
+  link: "https://cdn.sgdevstudio.in/assets/shubh_casual_21_dec.webp",
+};
