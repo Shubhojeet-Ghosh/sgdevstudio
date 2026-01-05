@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
@@ -90,6 +91,11 @@ export default function RootLayout({
         <WebsiteSchema />
         <ReduxProvider> {children}</ReduxProvider>
         <Toaster />
+
+        <Script
+          src="https://cdn.sgdevstudio.in/widget/v0.0.3/widget.js?agent_id=695c342989c5797e0f344572"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
