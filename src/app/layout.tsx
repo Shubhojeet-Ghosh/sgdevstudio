@@ -85,6 +85,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const ENABLE_WIDGET = false;
+
   return (
     <html lang="en">
       <body className={`${plusJakarta.variable} antialiased font-jakarta`}>
@@ -92,10 +94,12 @@ export default function RootLayout({
         <ReduxProvider> {children}</ReduxProvider>
         <Toaster />
 
-        <Script
-          src="https://cdn.sgdevstudio.in/widget/v0.0.4/widget.js?agent_id=695c342989c5797e0f344572"
-          strategy="afterInteractive"
-        />
+        {ENABLE_WIDGET && (
+          <Script
+            src="https://cdn.sgdevstudio.in/widget/v0.0.4/widget.js?agent_id=695c342989c5797e0f344572"
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );
