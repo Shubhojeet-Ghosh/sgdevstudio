@@ -96,7 +96,7 @@ export default function RootLayout({
 
         {ENABLE_WIDGET && (
           <Script
-            src="https://cdn.sgdevstudio.in/widget/v0.0.4/widget.js?agent_id=695c342989c5797e0f344572"
+            src="https://cdn.sgdevstudio.in/widget/v0.0.5/widget.js?agent_id=695c342989c5797e0f344572"
             strategy="afterInteractive"
           />
         )}
