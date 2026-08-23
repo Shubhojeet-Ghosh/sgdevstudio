@@ -15,6 +15,34 @@ export interface Project {
 export const projectsData: Project[] = [
   {
     project_image_url:
+      "https://cdn.sgdevstudio.in/assets/elysium_atlas_homepage.png",
+    project_url: "https://atlas.sgdevstudio.in/",
+    project_name: "Elysium Atlas",
+    project_description:
+      "A multi-tenant B2B SaaS platform for embeddable AI website chat agents. Teams build branded assistants from a shared knowledge base, deploy live widgets with RAG-powered streaming answers, capture leads, monitor sessions, and hand off to human agents with real-time takeover.",
+    image_description:
+      "Autonomous AI agents for enterprise websites — build, deploy, and monitor embeddable chat widgets with RAG and live human handoff.",
+    project_points: [
+      "Build branded assistants from URLs, PDFs, docs, and Q&A pairs.",
+      "Deploy embeddable widgets with RAG-powered streaming chat.",
+      "Capture leads via LLM triggers and monitor live visitor sessions.",
+      "Human agent takeover with real-time Socket.IO handoff.",
+      "Custom API tools and role-based team access.",
+    ],
+    tech_stack_used: [
+      "PythonIcon",
+      "QdrantIcon",
+      "MongoDbIcon",
+      "RedisIcon",
+      "SocketIoIcon",
+    ],
+    gradient_colors: {
+      base: "atlas-500",
+      secondary: "atlas-300",
+    },
+  },
+  {
+    project_image_url:
       "https://cdn.sgdevstudio.in/assets/legittai_landing_page_lana.png",
     project_url: "https://legittai.com/",
     project_name: "Legitt Copilot",

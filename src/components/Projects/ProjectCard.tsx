@@ -24,6 +24,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       "cyan-500": "6, 182, 212",
       "emerald-500": "16, 185, 129",
       "amber-500": "245, 158, 11",
+      "atlas-500": "108, 95, 141",
+      "atlas-300": "168, 155, 196",
     };
     return colorMap[colorName] || "107, 114, 128"; // fallback to gray
   };
